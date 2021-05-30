@@ -9,9 +9,16 @@ class Puppy(Base):
     __tablename__ = 'puppy'
 
     name = Column(String(80), nullable=False)
-    id = Column(Integer, primary_key=True)
+    puppy_id = Column(Integer, primary_key=True)
     description = Column(String(250))
+
     # Add add a decorator property to serialize data from the database
+
+    @property
+    def serialize(self):
+        return {"name": self.name,
+                "puppy_id": self.puppy_id,
+                "description": self.description}
 
 
 engine = create_engine('sqlite:///puppies.db')

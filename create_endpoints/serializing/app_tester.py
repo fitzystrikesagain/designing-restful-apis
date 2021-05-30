@@ -1,15 +1,16 @@
 import httplib2
 import json
+import os
 import sys
 
-from utils.constants import FLASK_APP_PORT
+FLASK_PORT = os.environ.get("FLASK_PORT")
 
 print("Running Endpoint Tester....\n")
 print("Please enter the address of the server you want to access.")
-print(f"Press Enter to use http://localhost:{FLASK_APP_PORT}: ")
+print(f"Press Enter to use http://localhost:{FLASK_PORT}: ")
 address = input()
 if address == "":
-    address = f"http://localhost:{FLASK_APP_PORT}" if not address else address
+    address = f"http://localhost:{FLASK_PORT}" if not address else address
 
 # Making a POST Request
 print("Making a POST request to /puppies...")

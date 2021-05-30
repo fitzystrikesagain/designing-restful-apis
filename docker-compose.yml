@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: api-server
+    env_file:
+      - .env
     image: python:3.9.5
     ports:
       - "80:80"

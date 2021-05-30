@@ -1,9 +1,11 @@
+import os
+
 from flask import Flask, request, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base, Puppy
-from utils.constants import FLASK_APP_PORT
 
+FLASK_PORT = os.environ.get("FLASK_PORT")
 engine = create_engine("sqlite:///puppies.db")
 Base.metadata.bind = engine
 
@@ -27,8 +29,7 @@ def puppiesFunction():
     elif request.method == "POST":
         # Call the method to make a new puppy
         print("Making a New puppy")
-
-        name = request.args.get("name", '')
+        name = request.args.get("name", "")
         description = request.args.get("description", '')
         print(name)
         print(description)
@@ -90,5 +91,5 @@ def deletePuppy(puppy_id):
 
 
 if __name__ == "__main__":
-    app.debug = False
-    app.run(host="0.0.0.0", port=FLASK_APP_PORT)
+    app.debug = True
+    app.run(host="0.0.0.0", port=FLASK_PORT)
