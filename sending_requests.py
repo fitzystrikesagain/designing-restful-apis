@@ -6,9 +6,7 @@ HOST = "http://localhost:80/{}"
 def handle_request(method="get", endppoint="readHello"):
     url = HOST.format(endppoint)
     r = requests.request(method=method, url=url)
-    # print(f"Received status code {r.status_code} for {url}. Response from server was: ")
     print(r.text)
-    # print()
 
 
 def main():
