@@ -78,3 +78,7 @@ def main():
     # Change the city to get results for a different city
     body = handle_request(api_url, new_york)
     pprint(body, indent=0)
+
+
+if __name__ == "__main__":
+    main()
