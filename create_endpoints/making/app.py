@@ -15,7 +15,7 @@ def puppies_function():
 # 'id' for when the client visits a URI like "/puppies/5"
 @app.route("/puppies/<puppy_id>")
 def puppies_function_id(puppy_id):
-    return f"This method will act on the puppy with id {puppy_id}"
+    return f"This method will act on the puppy with id {puppy_id}]"
 
 
 if __name__ == '__main__':
