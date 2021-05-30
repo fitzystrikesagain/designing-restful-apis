@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base, Puppy
+from utils.constants import FLASK_APP_PORT
 
 engine = create_engine('sqlite:///puppies.db')
 Base.metadata.bind = engine
@@ -90,4 +91,4 @@ def deletePuppy(puppy_id):
 
 if __name__ == '__main__':
     app.debug = False
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=FLASK_APP_PORT)
