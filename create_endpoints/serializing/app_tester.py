@@ -2,13 +2,14 @@ import httplib2
 import json
 import sys
 
-FLASK_PORT = 80
+from utils.constants import FLASK_APP_PORT
+
 print("Running Endpoint Tester....\n")
 print("Please enter the address of the server you want to access.")
-print(f"Press Enter to use http://localhost:{FLASK_PORT}: ")
+print(f"Press Enter to use http://localhost:{FLASK_APP_PORT}: ")
 address = input()
 if address == "":
-    address = f"http://localhost:{FLASK_PORT}" if not address else address
+    address = f"http://localhost:{FLASK_APP_PORT}" if not address else address
 
 # Making a POST Request
 print("Making a POST request to /puppies...")
@@ -20,7 +21,7 @@ try:
     puppyID = obj["Puppy"]["puppy_id"]
     if resp["status"] != "200":
         raise Exception(
-            "Received an unsuccessful status code of %s" % resp["status"])
+            f"Received an unsuccessful status code of {resp['status']}")
 
 except Exception as err:
     print("Test 1 FAILED: Could not make POST Request to web server")
@@ -37,7 +38,7 @@ try:
     resp, result = h.request(url, "GET")
     if resp["status"] != "200":
         raise Exception(
-            "Received an unsuccessful status code of %s" % resp["status"])
+            f"Received an unsuccessful status code of {resp['status']}")
 except Exception as err:
     print("Test 2 FAILED: Could not make GET Request to web server")
     print(err.args)
@@ -55,7 +56,7 @@ try:
     resp, result = h.request(url, "GET")
     if resp["status"] != "200":
         raise Exception(
-            "Received an unsuccessful status code of %s" % resp["status"])
+            f"Received an unsuccessful status code of {resp['status']}")
 
 
 except Exception as err:
