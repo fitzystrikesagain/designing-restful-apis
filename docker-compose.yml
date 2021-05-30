@@ -3,10 +3,10 @@ version: "3.6"
 services:
   api_server:
     container_name: api-server
-    image: jazzdd/alpine-flask:latest
+    image: jazzdd/alpine-flask:python3
     ports:
       - "80:80"
       - "5000:5000"
     restart: unless-stopped
     volumes:
-    - ./app:/app
+    - ./create_endpoints:/app

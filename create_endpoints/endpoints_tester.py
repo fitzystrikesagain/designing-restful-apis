@@ -1,10 +1,9 @@
 import httplib2
-import json
 import sys
 
 print("Running Endpoint Tester....\n")
 address = input("""Please enter the address of the server you want to access,
-If left blank the connection will be set to 'http://localhost:5000':   """)
+If left blank the connection will be set to 'http://localhost:5000': """)
 if address == '':
     address = 'http://localhost:5000'
 # Making a GET Request
