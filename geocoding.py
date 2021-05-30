@@ -42,13 +42,13 @@ def get_coordinates_from_city(json_body):
     return lat_long.get("lat"), lat_long.get("lng")
 
 
-def handle_request(api_key, url):
+def handle_request(url):
     """Handles an API requests for the Google Maps API specifically, which will return a 200 for an invalid key for
     some reason
-    :param api_key: The Google Maps API Key
     :param url: A Google Maps API endpoint without the key, e.g.: https://maps.googleapis.com/maps/api/geocode/json?address=Tokyo,+Japan
     :return: a json body if successful or exit code 1 if not
     """
+    api_key = authenticate()
     query_params = f"&key={api_key}"
     full_url = url + query_params
     r = requests.get(full_url)
@@ -69,11 +69,10 @@ def main():
     6. Prints the results in the format (City: City, Region; Lat/Long: (lat, long)
     :return: None
     """
-    api_key = authenticate()
     for city in CITIES:
         url = f"{BASE_URL}/{PREFERRED_FORMAT}?address={format_city(city)}"
         print(url)
-        body = handle_request(api_key, url)
+        body = handle_request(url)
         print(f"City: {city}; Lat/Long: {get_coordinates_from_city(body)}")
 
 
