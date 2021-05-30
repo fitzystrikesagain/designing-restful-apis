@@ -1,9 +1,14 @@
+import os
+
 from flask import Flask, request
 
 app = Flask(__name__)
 
+FLASK_PORT = os.environ.get("FLASK_PORT")
 
-# Create the appropriate app.route functions, test and see if they work, and paste your URIs in the boxes below.
+
+# Create the appropriate app.route functions, test and see if they work, and
+# paste your URIs in the boxes below.
 
 # Make an app.route() decorator here
 @app.route("/puppies", methods=["GET", "POST"])
@@ -49,3 +54,8 @@ def update_puppy(puppy_id):
 
 def delete_puppy(puppy_id):
     return f"Removing Puppy with id {puppy_id}"
+
+
+if __name__ == "__main__":
+    app.debug = True
+    app.run(host="0.0.0.0", port=FLASK_PORT)
