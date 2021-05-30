@@ -15,7 +15,7 @@ def authenticate():
     exits with exit code -1
     :return: (CLIENT_ID, CLIENT_SECRET)
     """
-    config = dotenv_values(".env")
+    config = dotenv_values("../.env")
     creds = config.keys()
     client_id = config.get("FOURSQUARE_CLIENT_ID")
     client_secret = config.get("FOURSQUARE_CLIENT_SECRET")

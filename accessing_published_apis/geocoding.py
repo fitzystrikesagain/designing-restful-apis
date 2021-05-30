@@ -19,7 +19,7 @@ def authenticate():
     GOOGLE_MAPS_API_KEY=YOUR_API_TOKEN_HERE
     :return: API key
     """
-    config = dotenv_values(".env")
+    config = dotenv_values("../.env")
     return config.get("GOOGLE_MAPS_API_KEY")
 
 
