@@ -47,7 +47,12 @@ longitude from a city and search for venues of interest there.
 
     Use Flask to build your own web server.
     Setup API endpoints that follow the constraints to qualify as a RESTful API.
-
+In this section, I created a puppies app in Flask with a couple different 
+endpoints. Users can get, create, update, or delete puppies. I integrated a 
+Sqlite database into this webserver. In the final exercise, I created a 
+Flask that takes a location and searches all the restaurants in the area. 
+These results are also stored in a databse and returned to the user. This 
+app also supports the updating or deletion of restaurants.   
 ## 4. Securing your API
 
     Learn about API security.
