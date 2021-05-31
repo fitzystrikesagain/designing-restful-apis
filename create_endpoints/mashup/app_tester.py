@@ -106,7 +106,7 @@ else:
         print("""Attempting Test 4: Changing the name, image, and address of the
         first restaurant to Udacity...""")
         result = all_result
-        restID = result["restaurants"][0]["id"]
+        restID = result["restaurants"][0]["restaurant_id"]
         url = address + f"""/restaurants/{restID}?name=Udacity&address=2465+
         Latham+Street+Mountain+View+CA&image=https://media.glassdoor.com/l/70
         /82/fc/e8/students-first.jpg"""
