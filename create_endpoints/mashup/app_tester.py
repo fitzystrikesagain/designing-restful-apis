@@ -128,8 +128,8 @@ try:
     print(
         "Attempting Test 5: Deleteing the second restaurant from the server...")
     result = all_result
-    restID = result["restaurants"][1]["id"]
-    url = address + "/restaurants/%s" % restID
+    restID = result["restaurants"][1]["restaurant_id"]
+    url = address + f"/restaurants/{restID}"
     h = httplib2.Http()
     resp, result = h.request(url, "DELETE")
     if resp["status"] != "200":
