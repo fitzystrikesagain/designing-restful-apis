@@ -2,16 +2,17 @@
 import os
 
 from flask import Flask, jsonify, request
-from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy import create_engine
 
 from find_a_restaurant import find_a_restaurant
 from models import Base, Restaurant
 
-google_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
+flask_port = os.environ.get("FLASK_PORT")
 fs_client_id = os.environ.get("FOURSQUARE_CLIENT_ID")
 fs_secret = os.environ.get("FOURSQUARE_CLIENT_SECRET")
+google_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
 
 engine = create_engine('sqlite:///restaurants.db')
 
@@ -76,4 +77,4 @@ def restaurant_handler(restaurant_id):
 if __name__ == '__main__':
     print("in the main function")
     app.debug = True
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=flask_port)

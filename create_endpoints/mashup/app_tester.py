@@ -1,19 +1,18 @@
-import codecs
 import json
+import os
 import sys
 
 import httplib2
 
-# sys.stdout = codecs.getwriter("utf8")(sys.stdout)
-# sys.stderr = codecs.getwriter("utf8")(sys.stderr)
+flask_port = os.environ.get("FLASK_PORT")
 err = "Received an unsuccessful status code of {}"
 
 print("Running Endpoint Tester....\n")
 print("Please enter the address of the server you want to access.")
-print("Press Enter to use http://localhost:5000: ", end="")
+print(f"Press Enter to use http://localhost:{flask_port}: ", end="")
 address = input()
 if address == "":
-    address = "http://localhost:5000"
+    address = f"http://localhost:{flask_port}"
 # TEST ONE -- CREATE NEW RESTAURANTS
 base_url = f"{address}/restaurants"
 try:
