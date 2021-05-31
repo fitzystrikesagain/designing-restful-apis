@@ -2,12 +2,11 @@
 import codecs
 import json
 import os
-import sys
 
 import httplib2
 
-sys.stdout = codecs.getwriter("utf8")(sys.stdout)
-sys.stderr = codecs.getwriter("utf8")(sys.stderr)
+# sys.stdout = codecs.getwriter("utf8")(sys.stdout)
+# sys.stderr = codecs.getwriter("utf8")(sys.stderr)
 google_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
 fs_client_id = os.environ.get("FOURSQUARE_CLIENT_ID")
 fs_secret = os.environ.get("FOURSQUARE_CLIENT_SECRET")
@@ -33,6 +32,7 @@ def get_geocode_location(input_string):
 # geocodes the location, and then pass in the latitude and longitude coordinates
 # to the Foursquare API
 def find_a_restaurant(meal_type, location):
+    print("wat")
     latitude, longitude = get_geocode_location(location)
     base_url = "https://api.foursquare.com/v2/venues"
     api_url = base_url + "/search?"
@@ -63,12 +63,12 @@ def find_a_restaurant(meal_type, location):
         result = json.loads(h.request(url, "GET")[1])
         # Grab the first image
         # if no image available, insert default image url
-        if result["response"]["photos"]["items"]:
+        try:
             firstpic = result["response"]["photos"]["items"][0]
             prefix = firstpic["prefix"]
             suffix = firstpic["suffix"]
             image_url = prefix + "300x300" + suffix
-        else:
+        except KeyError:
             image_url = default_image
 
         restaurant_info = {"name": restaurant_name,
@@ -83,6 +83,7 @@ def find_a_restaurant(meal_type, location):
 
 
 if __name__ == "__main__":
+    print("db")
     find_a_restaurant("Pizza", "Tokyo, Japan")
     find_a_restaurant("Tacos", "Jakarta, Indonesia")
     find_a_restaurant("Tapas", "Maputo, Mozambique")
@@ -92,3 +93,4 @@ if __name__ == "__main__":
     find_a_restaurant("Sushi", "Los Angeles, California")
     find_a_restaurant("Steak", "La Paz, Bolivia")
     find_a_restaurant("Gyros", "Sydney Austrailia")
+print("db")

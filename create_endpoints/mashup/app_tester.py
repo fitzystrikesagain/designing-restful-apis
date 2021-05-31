@@ -4,15 +4,15 @@ import sys
 
 import httplib2
 
-sys.stdout = codecs.getwriter("utf8")(sys.stdout)
-sys.stderr = codecs.getwriter("utf8")(sys.stderr)
+# sys.stdout = codecs.getwriter("utf8")(sys.stdout)
+# sys.stderr = codecs.getwriter("utf8")(sys.stderr)
 err = "Received an unsuccessful status code of {}"
 
 print("Running Endpoint Tester....\n")
 print("Please enter the address of the server you want to access.")
 print("Press Enter to use http://localhost:5000: ", end="")
 address = input()
-if address == '':
+if address == "":
     address = "http://localhost:5000"
 # TEST ONE -- CREATE NEW RESTAURANTS
 base_url = f"{address}/restaurants"
@@ -23,6 +23,7 @@ try:
     resp, result = h.request(url, "POST")
     if resp["status"] != "200":
         raise Exception(err.format(resp['status']))
+    print(result)
     print(json.loads(result))
 
     url = f"{base_url}?location=Denver Colorado&mealType=Soup"
@@ -31,13 +32,20 @@ try:
     if resp["status"] != "200":
         raise Exception(err.format(resp['status']))
     print(json.loads(result))
+    print("soup succeeded")
 
+    print("starting crepes")
     url = f"{base_url}?location=Prague+Czech+Republic&mealType=Crepes"
+    print("making http request")
     h = httplib2.Http()
+    print("http request succeded, sending post")
     resp, result = h.request(url, "POST")
+    print(resp)
+    print(resp.keys())
+    print(resp.get("status"))
     if resp["status"] != "200":
         raise Exception(err.format(resp['status']))
-    print(json.loads(result).iteritems())
+    print(json.loads(result))
 
     url = f"{base_url}?location=Shanghai+China&mealType=Sandwiches"
     h = httplib2.Http()
@@ -46,7 +54,7 @@ try:
         raise Exception(err.format(resp['status']))
     print(json.loads(result))
 
-    url = f"{base_url}?location = Nairobi + Kenya & mealType = Pizza"
+    url = f"{base_url}?location=Nairobi+Kenya&mealType=Pizza"
     h = httplib2.Http()
     resp, result = h.request(url, "POST")
     if resp["status"] != "200":

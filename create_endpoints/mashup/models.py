@@ -22,7 +22,6 @@ class Restaurant(Base):
             'restaurant_address': self.restaurant_address,
             'restaurant_image': self.restaurant_image,
             'restaurant_id': self.restaurant_id
-
         }
 
 
