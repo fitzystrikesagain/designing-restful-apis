@@ -25,7 +25,7 @@ app = Flask(__name__)
 def all_restaurants_handler():
     if request.method == "GET":
         restaurants = session.query(Restaurant).all()
-        return jsonify(restaurants)
+        return jsonify(restaurants=[i.serialize for i in restaurants])
     elif request.method == "POST":
         # MAKE A NEW RESTAURANT AND STORE IT IN DATABASE
         location = request.args.get("location", "")

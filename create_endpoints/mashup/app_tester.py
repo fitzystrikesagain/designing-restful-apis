@@ -23,7 +23,6 @@ try:
     resp, result = h.request(url, "POST")
     if resp["status"] != "200":
         raise Exception(err.format(resp['status']))
-    print(result)
     print(json.loads(result))
 
     url = f"{base_url}?location=Denver Colorado&mealType=Soup"
@@ -32,17 +31,10 @@ try:
     if resp["status"] != "200":
         raise Exception(err.format(resp['status']))
     print(json.loads(result))
-    print("soup succeeded")
 
-    print("starting crepes")
     url = f"{base_url}?location=Prague+Czech+Republic&mealType=Crepes"
-    print("making http request")
     h = httplib2.Http()
-    print("http request succeded, sending post")
     resp, result = h.request(url, "POST")
-    print(resp)
-    print(resp.keys())
-    print(resp.get("status"))
     if resp["status"] != "200":
         raise Exception(err.format(resp['status']))
     print(json.loads(result))
@@ -74,6 +66,7 @@ try:
     url = address + "/restaurants"
     h = httplib2.Http()
     resp, result = h.request(url, "GET")
+    print(resp)
     if resp["status"] != "200":
         raise Exception(err.format(resp["status"]))
     all_result = json.loads(result)
