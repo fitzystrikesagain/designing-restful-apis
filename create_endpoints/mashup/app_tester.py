@@ -80,12 +80,16 @@ else:
     print("Test 2 PASS: Succesfully read all restaurants")
     # TEST THREE -- READ A SPECIFIC RESTAURANT
     try:
+        print("\n\n\n*****************************************************")
         print("Attempting Test 3: Reading the last created restaurant...")
         result = all_result
-        restID = result["restaurants"][len(result["restaurants"]) - 1]["id"]
-        url = address + "/restaurants/%s" % restID
+        restID = result["restaurants"][len(result["restaurants"]) - 1]["restaurant_id"]
+        print(restID)
+        url = address + f"/restaurants/{restID}"
+        print(url)
         h = httplib2.Http()
         resp, result = h.request(url, "GET")
+        print(resp)
         if resp["status"] != "200":
             raise Exception(err.format(resp["status"]))
         print(json.loads(result))

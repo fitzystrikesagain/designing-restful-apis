@@ -49,7 +49,8 @@ def all_restaurants_handler():
 
 @app.route('/restaurants/<int:restaurant_id>', methods=['GET', 'PUT', 'DELETE'])
 def restaurant_handler(restaurant_id):
-    restaurant = session.query(Restaurant).filter_by(id=id).one()
+    restaurant = session.query(Restaurant).filter_by(
+        restaurant_id=restaurant_id).one()
     if request.method == "GET":
         return jsonify(restaurant=restaurant.serialize)
     elif request.method == "PUT":
